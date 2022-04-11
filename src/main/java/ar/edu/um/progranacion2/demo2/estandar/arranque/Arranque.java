@@ -1,5 +1,6 @@
 package ar.edu.um.progranacion2.demo2.estandar.arranque;
 
+import ar.edu.um.progranacion2.demo2.estandar.excepciones.StockNegativoException;
 import ar.edu.um.progranacion2.demo2.estandar.pojo.Cliente;
 import ar.edu.um.progranacion2.demo2.estandar.pojo.Comida;
 import ar.edu.um.progranacion2.demo2.estandar.pojo.Empleado;
@@ -48,18 +49,23 @@ public class Arranque {
     public void abrirNegocio() {
         Empleado em1 = new Empleado("Fernando", "Villarreal");
         Empleado em2 = new Empleado("Daniel", "Quinteros");
-        Comida menu1 = new Comida("Menu1","Pancho", 700D,3);
-        Comida menu2 = new Comida("Menu2","Lomo", 1200D,3);
-        Comida menu3 = new Comida("Menu3","Papas", 400D,3);
-        Comida menu4 = new Comida("Menu4","Pizza", 750D,3);
-        Comida menu5 = new Comida("Menu5","Helado", 350D,3);
         this.negocio = new Negocio();
         this.negocio.agregarEmpleado(em1);
         this.negocio.agregarEmpleado(em2);
-        this.negocio.agregarComida(menu1);
-        this.negocio.agregarComida(menu2);
-        this.negocio.agregarComida(menu3);
-        this.negocio.agregarComida(menu4);
-        this.negocio.agregarComida(menu5);
+        try {
+            Comida menu1 = new Comida("Menu1", "Pancho", 700D, 3);
+            Comida menu2 = new Comida("Menu2", "Lomo", 1200D, 3);
+            Comida menu3 = new Comida("Menu3", "Papas", 400D, 3);
+            Comida menu4 = new Comida("Menu4", "Pizza", 750D, -3);
+            Comida menu5 = new Comida("Menu5", "Helado", 350D, 3);
+            this.negocio.agregarComida(menu1);
+            this.negocio.agregarComida(menu2);
+            this.negocio.agregarComida(menu3);
+            this.negocio.agregarComida(menu4);
+            this.negocio.agregarComida(menu5);
+        }
+        catch (StockNegativoException s) {
+            System.out.println("Se intentó cargar un menú con stock negativo.");
+        }
     }
 }
