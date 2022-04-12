@@ -13,10 +13,10 @@ public class Comida {
     protected String comida;
     protected String descripcion;
     protected Double precio;
-    protected int stock;
+    protected Integer stock;
 
-    public Comida(String comida, String descripcion, Double precio, int stock) throws StockNegativoException {
-        if(this.stock < 0) {
+    public Comida(String comida, String descripcion, Double precio, Integer stock) throws StockNegativoException {
+        if(stock < 0) {
             throw new StockNegativoException("No se puede cargar comida sin stock");
         }
         this.comida = comida;
@@ -26,7 +26,7 @@ public class Comida {
     }
 
     public void descontarStock() throws NoMasComidaException {
-        if(this.stock == 0) {
+        if(this.stock <= 0) {
             throw new NoMasComidaException("No se puede vender esa comida porque no hay mas stock");
         }
         this.stock--;

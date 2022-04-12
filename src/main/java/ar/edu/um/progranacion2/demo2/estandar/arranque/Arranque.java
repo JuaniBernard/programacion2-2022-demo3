@@ -56,7 +56,7 @@ public class Arranque {
             Comida menu1 = new Comida("Menu1", "Pancho", 700D, 3);
             Comida menu2 = new Comida("Menu2", "Lomo", 1200D, 3);
             Comida menu3 = new Comida("Menu3", "Papas", 400D, 3);
-            Comida menu4 = new Comida("Menu4", "Pizza", 750D, -3);
+            Comida menu4 = new Comida("Menu4", "Pizza", 750D, 3);
             Comida menu5 = new Comida("Menu5", "Helado", 350D, 3);
             this.negocio.agregarComida(menu1);
             this.negocio.agregarComida(menu2);
@@ -64,7 +64,7 @@ public class Arranque {
             this.negocio.agregarComida(menu4);
             this.negocio.agregarComida(menu5);
         }
-        catch (StockNegativoException s) {
+        catch (StockNegativoException e) {
             System.out.println("Se intentó cargar un menú con stock negativo.");
         }
     }
